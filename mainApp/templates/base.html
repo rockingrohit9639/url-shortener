@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> DUS - {% block title %} {% endblock title%}</title>   
+</head>
+<body>
+   
+  {% if messages %}
+  {% for message in messages %}
+  {% if  message.tags == 'success' %}
+  <article class="message is-success">
+    <div class="message-header">
+      <p>{{ message }}</p>
+      
+      <button class="delete" aria-label="delete"></button>
+    </div>
+  </article>
+  {% elif message.tags == 'error' %}
+  <article class="message is-danger">
+    <div class="message-header">
+      <p>{{ message }}</p>
+      
+      <button class="delete" aria-label="delete"></button>
+    </div>
+  </article>
+  {% elif message.tags == 'info' %}
+  <article class="message is-info">
+    <div class="message-header">
+      <p>{{ message }}</p>
+      
+      <button class="delete" aria-label="delete"></button>
+    </div>
+  </article>
+  {% elif message.tags == 'warning' %}
+  <article class="message is-warning">
+    <div class="message-header">
+      <p>{{ message }}</p>
+      <button class="delete" aria-label="delete"></button>
+    </div>
+  </article>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
+
+
+  
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+
+        <a class="navbar-item">
+          Why DUS?
+        </a>
+
+        <a class="navbar-item" href="{% url 'DUS Dashboard' %}">
+          Dashboard
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="{% url 'aboutus' %}">
+              About
+            </a>
+            <a class="navbar-item">
+              Jobs
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="{% url 'contactus' %}">
+              Contact Support
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {% if not user.is_authenticated %}
+            <a class="button is-danger" href="{% url 'accounts:signup' %}">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" href="{% url 'accounts:login' %}">
+              Log in
+            </a>
+            {% else %}
+            <p class="mr-2 is-size-6" >Welcome <strong>{{ request.user }}</strong></p>
+            <a href="{% url 'accounts:logout' %}" class="button is-danger">Logout</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+{% block body %}
+
+
+{% endblock body %}
+
+<footer class="footer my-5">
+  <div class="content has-text-centered">
+    <p>
+      Copyright &copy;<strong> DUS</strong>
+    </p>
+  </div>
+</footer>
+
+<script>
+  const message = document.querySelector('.message');
+  const delete_button = document.querySelector('.delete');
+
+  delete_button.addEventListener('click', ()=> {
+    message.classList.add('is-hidden');
+  })
+
+</script>
+
+</body>
+</html>
