@@ -29,8 +29,6 @@ def get_url():
 	return res
 
 
-
-
 def home(request):
     # print(request.META['HTTP_HOST'])
     # res = get_url()
@@ -38,6 +36,7 @@ def home(request):
     #     k = Keys(key=it)
     #     k.save()
     return render(request, "index.html")
+
 
 @login_required(login_url='/accounts/login/')
 def dashboard(request):

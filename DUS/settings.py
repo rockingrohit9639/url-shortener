@@ -15,7 +15,7 @@ SECRET_KEY = 'd7p_w3ts$!7au#m6npl+l%#9y+sut8-p-jhri33el^i*xftct1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["dus-python.herokuapp.com", '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

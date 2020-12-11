@@ -75,19 +75,14 @@
         <button class="button is-small is-outlined is-rounded" onclick="copyUrl()">Copy</button>
     </div>
   </div>
-</div> 
+</div>
 <script>
     function copyUrl(){
-        holdText = document.getElementById("shorted_url");
-        textToCopy = holdText.value;
+        let holdText = document.getElementById("shorted_url");
+        let textToCopy = holdText.value;
         navigator.clipboard.writeText(textToCopy);
         alert("Copied Url : " + textToCopy);
     }
-    var custom_link = document.querySelector('.custom-link');
-    let menu_ = document.querySelector('#menu');
-    custom_link.addEventListener('click', function(){
-        console.log('clicked');
-    })
 
 </script>
 {% endif %}
