@@ -48,57 +48,33 @@
 
 </style>
 
+    <section>
+        <div class="container">
+            <h1 class="title is-1 has-text-centered"> Welcome <span style="color: #ff3b3b;">{{ request.user }}</span>  </h1>
+            <hr>
+            <h5 class="title is-5 has-text-centered">Some of the URLs shorten by you are listed below</h5>
+        
+            <table class="table has-text-centered">
+                <thead>
+                  <tr>
+                    <th><abbr title="Position">S No.</abbr></th>
+                    <th>URL</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                    {% for url in all_urls %}
+                  <tr>
+                    <th> {{ forloop.counter }} </th>
+                    <td>  <a href="//{{ url.short_url }}" target="_blank"> {{ url.short_url }}</a> </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
 
-<section class="section" id="short_section" style="background-color: #f4f4f4;">
-    <form action="shorten" method="POST" id="form">
-        {% csrf_token  %}
-        <div class="conatiner">
-            <div class="columns is-variable is-centered">
-                <div class="column is-one-thirds">
-                    <div class="fields">
-                        <input class="input is-medium" type="text" placeholder="Enter Your URL here" name="original_url" required>
-                    </div>
-                    <div class="fields">
-                        <input class="input is-medium mt-2" type="text" placeholder="Custom URL (If any)" name="custom_url">
-                    </div>
-                    <div class="fields">
-                        <input class="input is-medium mt-2" type="text" placeholder="Expiry Days (Default will be 7)" name="expire_days">
-                    </div>
-                </div>
-            </div>
-            <div class="column is-one-fifth">
-                <div class="buttons" style="justify-content: center;"><button type="submit" class="button is-medium input is-red-" >Shorten</button></div>
-            </div>
+
+              </table> 
         </div>
-    </form>
-</section>
+    </section>
 
-
-
-
-{% if short_url %}
-<div class="container mt-4">
-  <div class="notification is-primary">
-    Your Short Url : <input type="text" class="input is-small" style="width: 50%; background: transparent; color: white; border: none;" value="{{ short_url }}" id="shorted_url"> 
-    <div class="is-pulled-right">
-        <button class="button is-small is-outlined is-rounded" onclick="copyUrl()">Copy</button>
-    </div>
-  </div>
-</div>
-<script>
-    function copyUrl(){
-        holdText = document.getElementById("shorted_url");
-        textToCopy = holdText.value;
-        navigator.clipboard.writeText(textToCopy);
-        alert("Copied Url : " + textToCopy);
-    }
-    var custom_link = document.querySelector('.custom-link');
-    let menu_ = document.querySelector('#menu');
-    custom_link.addEventListener('click', function(){
-        console.log('clicked');
-    })
-
-</script>
-{% endif %}
 
 {% endblock body %}

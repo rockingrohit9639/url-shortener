@@ -8,6 +8,13 @@
     <title> DUS - {% block title %} {% endblock title%}</title>   
 </head>
 <body>
+
+    <style>
+      #heading{
+        font-size: 30px;
+        font-weight: 800;
+      }
+    </style>
    
   {% if messages %}
   {% for message in messages %}
@@ -52,7 +59,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <h1 id="heading"> DUS-Python </h1>
       </a>
   
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -81,9 +88,6 @@
           <div class="navbar-dropdown">
             <a class="navbar-item" href="{% url 'aboutus' %}">
               About
-            </a>
-            <a class="navbar-item">
-              Jobs
             </a>
             <hr class="navbar-divider">
             <a class="navbar-item" href="{% url 'contactus' %}">
@@ -128,12 +132,16 @@
 </footer>
 
 <script>
+{% if messages %}
+
   const message = document.querySelector('.message');
   const delete_button = document.querySelector('.delete');
 
   delete_button.addEventListener('click', ()=> {
     message.classList.add('is-hidden');
   })
+
+{% endif %}
 
 </script>
 
