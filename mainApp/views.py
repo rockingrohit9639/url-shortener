@@ -116,7 +116,7 @@ def shorten(request):
                 key = Keys.objects.last()
                 short += "/" + key.key
                 key.delete()
-                newurl = ShortenUrl(original_url=original, short_url=short, user=request.user,
+                newurl = ShortenUrl(original_url=original, short_url=short,
                                     creation_date=datetime.now(),
                                     expiration_date=(datetime.now() + timedelta(days=int(expiry_days))))
                 newurl.save()

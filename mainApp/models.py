@@ -11,7 +11,6 @@ class Keys(models.Model):
 
 class ShortenUrl(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, default=15, on_delete=models.CASCADE)
     original_url = models.CharField(blank=False, max_length=200)
     short_url = models.CharField(blank=False, max_length=30, unique=True)
     creation_date = models.DateTimeField(auto_now_add=True)
